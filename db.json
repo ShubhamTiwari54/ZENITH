@@ -1,0 +1,437 @@
+{
+  "user": {
+    "name": "Kavya",
+    "email": "kavya.nair@zenithbank.com",
+    "phone": "+91 98765 43210",
+    "address": "12, Outer Ring Road, Indiranagar, Bengaluru, 560038",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=faces",
+    "transactionPin": "1234",
+    "securitySettings": {
+      "twoFactorEnabled": true,
+      "biometricLogin": false,
+      "timeoutLimit": 5
+    }
+  },
+  "accounts": {
+    "savings": {
+      "accountNumber": "9876 5432 1098",
+      "routingNumber": "ZENI0000109",
+      "balance": 782450.3,
+      "availableBalance": 560230.1
+    },
+    "current": {
+      "accountNumber": "8765 4321 0987",
+      "routingNumber": "ZENI0000109",
+      "balance": 145000,
+      "availableBalance": 145000
+    }
+  },
+  "monthlyIncome": 195000,
+  "monthlyExpenses": 76850,
+  "creditCard": {
+    "cardNumber": "4312 8890 5433 4567",
+    "cardHolder": "KAVYA NAIR",
+    "expiry": "09/30",
+    "cvv": "258",
+    "frozen": false,
+    "availableLimit": 145230,
+    "totalLimit": 200000,
+    "limits": {
+      "online": 75000,
+      "offline": 25000,
+      "contactless": 15000
+    }
+  },
+  "spendingBreakdown": [
+    {
+      "category": "Food & Dining",
+      "percentage": 25,
+      "amount": 19210,
+      "color": "#FF5E8E"
+    },
+    {
+      "category": "Housing",
+      "percentage": 24,
+      "amount": 18430,
+      "color": "#7B61FF"
+    },
+    {
+      "category": "Transport",
+      "percentage": 16,
+      "amount": 12300,
+      "color": "#3B82F6"
+    },
+    {
+      "category": "Shopping",
+      "percentage": 14,
+      "amount": 10760,
+      "color": "#10B981"
+    },
+    {
+      "category": "Bills & Utilities",
+      "percentage": 11,
+      "amount": 8450,
+      "color": "#F59E0B"
+    },
+    {
+      "category": "Others",
+      "percentage": 10,
+      "amount": 7700,
+      "color": "#6B7280"
+    }
+  ],
+  "financialHealthScore": {
+    "score": 790,
+    "creditUtilization": "Good",
+    "paymentHistory": "100%",
+    "derogatoryMarks": "Excellent",
+    "ageOfCredit": "Good"
+  },
+  "upcomingPayments": [
+    {
+      "id": 1,
+      "type": "credit_card",
+      "title": "Credit Card Bill",
+      "dueDays": 3,
+      "amount": 8750,
+      "paid": false
+    },
+    {
+      "id": 2,
+      "type": "mobile",
+      "title": "Mobile Bill",
+      "dueDays": 5,
+      "amount": 589,
+      "paid": false
+    },
+    {
+      "id": 3,
+      "type": "internet",
+      "title": "Internet Bill",
+      "dueDays": 7,
+      "amount": 799,
+      "paid": false
+    }
+  ],
+  "offers": [
+    {
+      "id": 1,
+      "title": "10% Cashback on Flight Bookings",
+      "subtitle": "Using Zenith Credit Card",
+      "link": "Book Now",
+      "badge": "Travel",
+      "code": "ZENFLIGHT10",
+      "reward": "Up to ₹1,500 cashback"
+    },
+    {
+      "id": 2,
+      "title": "Zero Processing Fee on Personal Loan",
+      "subtitle": "Limited Time Offer",
+      "link": "Apply Now",
+      "badge": "Loans",
+      "code": "ZENLOAN0",
+      "reward": "Saves up to ₹5,000"
+    },
+    {
+      "id": 3,
+      "title": "Up to 7.5% p.a. on Fixed Deposits",
+      "subtitle": "Secure your future",
+      "link": "Invest Now",
+      "badge": "Investments",
+      "code": "ZENFD75",
+      "reward": "High yield guaranteed"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "TXN10001",
+      "date": "2026-06-24T18:32:00Z",
+      "merchant": "Zomato India",
+      "description": "Food Delivery",
+      "amount": 1250,
+      "type": "debit",
+      "category": "Food & Dining",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10002",
+      "date": "2026-06-24T12:15:00Z",
+      "merchant": "Uber India",
+      "description": "Ride Share",
+      "amount": 450,
+      "type": "debit",
+      "category": "Transport",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10003",
+      "date": "2026-06-23T20:45:00Z",
+      "merchant": "Netflix India",
+      "description": "Subscription Plan",
+      "amount": 799,
+      "type": "debit",
+      "category": "Bills & Utilities",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10004",
+      "date": "2026-06-23T10:00:00Z",
+      "merchant": "Salary Zenith Inc",
+      "description": "Monthly Corporate Payout",
+      "amount": 195000,
+      "type": "credit",
+      "category": "Income",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10005",
+      "date": "2026-06-22T15:30:00Z",
+      "merchant": "Amazon India",
+      "description": "Ergonomic Office Chair",
+      "amount": 8499,
+      "type": "debit",
+      "category": "Shopping",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10006",
+      "date": "2026-06-22T09:10:00Z",
+      "merchant": "Starbucks Coffee",
+      "description": "Morning Brew",
+      "amount": 380,
+      "type": "debit",
+      "category": "Food & Dining",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10007",
+      "date": "2026-06-21T11:20:00Z",
+      "merchant": "Decathlon Sports",
+      "description": "Running Shoes",
+      "amount": 2261,
+      "type": "debit",
+      "category": "Shopping",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10008",
+      "date": "2026-06-20T21:00:00Z",
+      "merchant": "Airtel Broadband",
+      "description": "Wifi Bill Payment",
+      "amount": 999,
+      "type": "debit",
+      "category": "Bills & Utilities",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10009",
+      "date": "2026-06-20T17:40:00Z",
+      "merchant": "Shell Fuel Station",
+      "description": "Petrol Top-up",
+      "amount": 2500,
+      "type": "debit",
+      "category": "Transport",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10010",
+      "date": "2026-06-19T14:15:00Z",
+      "merchant": "Bescom Power",
+      "description": "Electricity Bill",
+      "amount": 1540,
+      "type": "debit",
+      "category": "Bills & Utilities",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10011",
+      "date": "2026-06-18T10:00:00Z",
+      "merchant": "Landlord Rent",
+      "description": "Monthly Apartment Rental",
+      "amount": 18430,
+      "type": "debit",
+      "category": "Housing",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10012",
+      "date": "2026-06-17T16:20:00Z",
+      "merchant": "Swiggy Instamart",
+      "description": "Weekly Groceries",
+      "amount": 3450,
+      "type": "debit",
+      "category": "Food & Dining",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10013",
+      "date": "2026-06-16T13:00:00Z",
+      "merchant": "H&M Apparel",
+      "description": "Summer Jackets",
+      "amount": 4500,
+      "type": "debit",
+      "category": "Shopping",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10014",
+      "date": "2026-06-15T09:00:00Z",
+      "merchant": "Interest Credit",
+      "description": "Savings Account Interest",
+      "amount": 1250.3,
+      "type": "credit",
+      "category": "Income",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN10015",
+      "date": "2026-06-14T19:50:00Z",
+      "merchant": "BookMyShow",
+      "description": "Movie Tickets",
+      "amount": 920,
+      "type": "debit",
+      "category": "Others",
+      "status": "Completed"
+    }
+  ],
+  "budgets": [
+    {
+      "category": "Food & Dining",
+      "spent": 19210,
+      "limit": 25000
+    },
+    {
+      "category": "Housing",
+      "spent": 18430,
+      "limit": 20000
+    },
+    {
+      "category": "Transport",
+      "spent": 12300,
+      "limit": 15000
+    },
+    {
+      "category": "Shopping",
+      "spent": 10760,
+      "limit": 12000
+    },
+    {
+      "category": "Bills & Utilities",
+      "spent": 8450,
+      "limit": 10000
+    },
+    {
+      "category": "Others",
+      "spent": 7700,
+      "limit": 10000
+    }
+  ],
+  "loans": [
+    {
+      "id": 1,
+      "type": "Personal Loan",
+      "amount": 300000,
+      "remaining": 120000,
+      "nextDueDate": "2026-07-05",
+      "monthlyEMI": 8500,
+      "tenureMonths": 36,
+      "paidMonths": 24,
+      "rate": 10.5
+    },
+    {
+      "id": 2,
+      "type": "Car Loan",
+      "amount": 800000,
+      "remaining": 650000,
+      "nextDueDate": "2026-07-10",
+      "monthlyEMI": 15400,
+      "tenureMonths": 60,
+      "paidMonths": 12,
+      "rate": 8.75
+    }
+  ],
+  "insurance": [
+    {
+      "id": 1,
+      "type": "Health Insurance",
+      "provider": "Zenith Care Plan",
+      "premium": 1200,
+      "coverage": 500000,
+      "status": "Active",
+      "number": "INS-HLTH-902341"
+    },
+    {
+      "id": 2,
+      "type": "Car Insurance",
+      "provider": "Zenith Auto Safe",
+      "premium": 850,
+      "coverage": 300000,
+      "status": "Active",
+      "number": "INS-AUTO-783229"
+    }
+  ],
+  "investments": {
+    "summary": {
+      "stocks": 125000,
+      "mutualFunds": 82000,
+      "gold": 45000,
+      "fixedDeposits": 150000
+    },
+    "holdings": [
+      {
+        "symbol": "ZENITH",
+        "name": "Zenith Bancorp",
+        "shares": 150,
+        "avgPrice": 150,
+        "currentPrice": 185,
+        "type": "stock"
+      },
+      {
+        "symbol": "TCS",
+        "name": "Tata Consultancy Services",
+        "shares": 12,
+        "avgPrice": 3200,
+        "currentPrice": 3450,
+        "type": "stock"
+      },
+      {
+        "symbol": "RELIANCE",
+        "name": "Reliance Industries",
+        "shares": 20,
+        "avgPrice": 2200,
+        "currentPrice": 2450,
+        "type": "stock"
+      }
+    ],
+    "fixedDeposits": [
+      {
+        "id": 1,
+        "amount": 150000,
+        "interestRate": 7.5,
+        "termMonths": 12,
+        "startDate": "2025-10-10",
+        "maturityAmount": 161250,
+        "autoRenew": true
+      }
+    ]
+  },
+  "auditLogs": [
+    {
+      "id": "SEC-INIT",
+      "timestamp": "2026-06-25T10:12:29.742Z",
+      "action": "System Startup",
+      "details": "Demo database seeded successfully with default configurations",
+      "ip": "127.0.0.1",
+      "device": "System Core"
+    }
+  ],
+  "supportTickets": [
+    {
+      "id": "TKT-879",
+      "subject": "Inquire about Home Loan rates",
+      "status": "Closed",
+      "date": "2026-06-20",
+      "category": "Loans"
+    }
+  ]
+}
