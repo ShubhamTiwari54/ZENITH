@@ -1,16 +1,96 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export default function Header({ setSidebarOpen, user, upcomingPayments, addNotification, notifications, clearNotifications }) {
+export default function Header({ 
+  setSidebarOpen, 
+  user, 
+  upcomingPayments, 
+  addNotification, 
+  notifications, 
+  clearNotifications,
+  transactions,
+  offers,
+  setCurrentPage
+}) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMessages, setShowMessages] = useState(false);
   const [showRewards, setShowRewards] = useState(false);
-  
+
+  // Search Bar States
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState({ pages: [], txns: [], offersList: [] });
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const searchContainerRef = useRef(null);
+
   // Dummy messages
   const messages = [
     { id: 1, sender: "Zenith Care", preview: "Your new Credit Card has been dispatched.", time: "1h ago", unread: true },
     { id: 2, sender: "System", preview: "Weekly financial audit report is available.", time: "1d ago", unread: false },
     { id: 3, sender: "Loan Department", preview: "Your Personal Loan application has been approved.", time: "2d ago", unread: false }
   ];
+
+  // Close search dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setShowSearchResults(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults({ pages: [], txns: [], offersList: [] });
+      return;
+    }
+    const query = searchQuery.toLowerCase();
+    
+    // Pages matching
+    const pagesList = [
+      { name: "Dashboard Overview", id: "dashboard" },
+      { name: "Accounts & Ledger Statements", id: "accounts" },
+      { name: "Payments & Payee Transfers", id: "payments" },
+      { name: "Credit Cards Security", id: "cards" },
+      { name: "Investments & Fixed Deposits", id: "investments" },
+      { name: "Loans Principal Section", id: "loans" },
+      { name: "Insurance Policies Claims", id: "insurance" },
+      { name: "Budget Target Planner", id: "budget" },
+      { name: "Offers Center", id: "offers" },
+      { name: "Support Ticket Desk", id: "support" },
+      { name: "Accessibility Theme Settings", id: "settings" }
+    ];
+    const matchedPages = pagesList.filter(p => p.name.toLowerCase().includes(query));
+
+    // Transactions matching
+    const matchedTxns = (transactions || []).filter(t => 
+      t.merchant.toLowerCase().includes(query) ||
+      (t.description && t.description.toLowerCase().includes(query)) ||
+      (t.category && t.category.toLowerCase().includes(query)) ||
+      t.amount.toString().includes(query)
+    ).slice(0, 5);
+
+    // Offers matching
+    const matchedOffers = (offers || []).filter(o => 
+      o.title.toLowerCase().includes(query) ||
+      o.subtitle.toLowerCase().includes(query) ||
+      o.badge.toLowerCase().includes(query)
+    ).slice(0, 3);
+
+    setSearchResults({ pages: matchedPages, txns: matchedTxns, offersList: matchedOffers });
+  }, [searchQuery, transactions, offers]);
+
+  const handleSearchResultClick = (targetPage, scrollElementId = null) => {
+    setCurrentPage(targetPage);
+    setSearchQuery('');
+    setShowSearchResults(false);
+    if (scrollElementId) {
+      setTimeout(() => {
+        const el = document.getElementById(scrollElementId);
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  };
 
   return (
     <header className="header">
@@ -22,7 +102,7 @@ export default function Header({ setSidebarOpen, user, upcomingPayments, addNoti
         </svg>
       </button>
 
-      <div className="search-bar">
+      <div className="search-bar" ref={searchContainerRef} style={{ position: 'relative' }}>
         <span className="search-icon">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8" />
@@ -33,7 +113,91 @@ export default function Header({ setSidebarOpen, user, upcomingPayments, addNoti
           type="text" 
           placeholder="Search for transactions, cards, offers..." 
           className="search-input"
+          value={searchQuery}
+          onChange={e => {
+            setSearchQuery(e.target.value);
+            setShowSearchResults(true);
+          }}
+          onFocus={() => setShowSearchResults(true)}
         />
+        
+        {/* Floating Search Results Dropdown Overlay */}
+        {showSearchResults && searchQuery.trim() && (
+          <div className="dropdown-panel search-results-dropdown" style={{
+            position: 'absolute',
+            top: '110%',
+            left: 0,
+            right: 0,
+            backgroundColor: 'var(--card-bg)',
+            border: '1px solid var(--card-border)',
+            borderRadius: '12px',
+            boxShadow: 'var(--shadow-lg)',
+            zIndex: 1000,
+            maxHeight: '360px',
+            overflowY: 'auto',
+            padding: '12px'
+          }}>
+            {searchResults.pages.length === 0 && searchResults.txns.length === 0 && searchResults.offersList.length === 0 ? (
+              <p style={{ fontSize: '13px', color: 'var(--text-muted)', textAlign: 'center', padding: '12px' }}>No matches found</p>
+            ) : (
+              <>
+                {/* Pages */}
+                {searchResults.pages.length > 0 && (
+                  <div style={{ marginBottom: '12px' }}>
+                    <h5 style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '6px', borderBottom: '1px solid var(--card-border)', paddingBottom: '3px' }}>Pages</h5>
+                    {searchResults.pages.map(page => (
+                      <div 
+                        key={page.id} 
+                        style={{ fontSize: '13px', padding: '6px 8px', borderRadius: '6px', cursor: 'pointer' }}
+                        className="search-result-item"
+                        onClick={() => handleSearchResultClick(page.id)}
+                      >
+                        📄 {page.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Transactions */}
+                {searchResults.txns.length > 0 && (
+                  <div style={{ marginBottom: '12px' }}>
+                    <h5 style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '6px', borderBottom: '1px solid var(--card-border)', paddingBottom: '3px' }}>Transactions</h5>
+                    {searchResults.txns.map(txn => (
+                      <div 
+                        key={txn.id} 
+                        style={{ fontSize: '13px', padding: '6px 8px', borderRadius: '6px', cursor: 'pointer', display: 'flex', justifyContent: 'space-between' }}
+                        className="search-result-item"
+                        onClick={() => handleSearchResultClick('accounts')}
+                      >
+                        <span>💸 {txn.merchant} <span style={{fontSize: '11px', color: 'var(--text-muted)'}}>({txn.category})</span></span>
+                        <strong style={{ color: txn.type === 'credit' ? 'var(--success)' : 'var(--text-primary)' }}>
+                          {txn.type === 'credit' ? '+' : '-'}₹{txn.amount.toLocaleString('en-IN')}
+                        </strong>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Offers */}
+                {searchResults.offersList.length > 0 && (
+                  <div>
+                    <h5 style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '6px', borderBottom: '1px solid var(--card-border)', paddingBottom: '3px' }}>Deals & Vouchers</h5>
+                    {searchResults.offersList.map(offer => (
+                      <div 
+                        key={offer.id} 
+                        style={{ fontSize: '13px', padding: '6px 8px', borderRadius: '6px', cursor: 'pointer' }}
+                        className="search-result-item"
+                        onClick={() => handleSearchResultClick('offers')}
+                      >
+                        🎁 {offer.title}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="header-actions">

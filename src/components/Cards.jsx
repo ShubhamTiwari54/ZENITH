@@ -7,6 +7,9 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
   const [gateAction, setGateAction] = useState('reveal'); // 'reveal' or 'reset-pin'
   const [pin, setPin] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [showFraudModal, setShowFraudModal] = useState(false);
+  const [fraudMerchant, setFraudMerchant] = useState('');
+  const [fraudAmount, setFraudAmount] = useState('');
   
   // Card details state
   const [fullCardNumber, setFullCardNumber] = useState("•••• •••• •••• 4567");
@@ -21,6 +24,14 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
 
   // Card PIN Reset states
   const [newCardPin, setNewCardPin] = useState('');
+
+  useEffect(() => {
+    setLimits({
+      online: creditCard?.limits?.online || 75000,
+      offline: creditCard?.limits?.offline || 25000,
+      contactless: creditCard?.limits?.contactless || 15000
+    });
+  }, [creditCard]);
 
   // Handle countdown for card details exposure
   useEffect(() => {
@@ -95,6 +106,68 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
     setShowPinGate(true);
   };
 
+  const handleToggleTravelMode = async () => {
+    try {
+      const response = await fetch('/api/cards/toggle-travel', { method: 'POST' });
+      if (response.ok) {
+        const result = await response.json();
+        onCardAction();
+        addNotification("Travel Mode Updated", `Travel mode is now ${result.travelModeEnabled ? 'enabled' : 'disabled'}.`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleToggleInternational = async () => {
+    try {
+      const response = await fetch('/api/cards/toggle-international', { method: 'POST' });
+      if (response.ok) {
+        const result = await response.json();
+        onCardAction();
+        addNotification("International Payments", `International card payments are now ${result.internationalEnabled ? 'enabled' : 'disabled'}.`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleReplaceCard = async () => {
+    if (!confirm("Report this card lost and request an immediate replacement?")) return;
+    try {
+      const response = await fetch('/api/cards/replace', { method: 'POST' });
+      if (response.ok) {
+        onCardAction();
+        addNotification("Replacement Ordered", "Current card invalidated and replacement request created.");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleReportFraud = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/cards/report-fraud', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          merchant: fraudMerchant || 'Unrecognized merchant',
+          amount: parseFloat(fraudAmount || '0')
+        })
+      });
+      if (response.ok) {
+        setShowFraudModal(false);
+        setFraudMerchant('');
+        setFraudAmount('');
+        onCardAction();
+        addNotification("Fraud Report Filed", "Card locked and security incident logged for review.");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleVerifyGate = async () => {
     if (gateAction === 'reveal') {
       try {
@@ -115,7 +188,7 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
         } else {
           setErrorMsg(result.error || "Incorrect PIN.");
         }
-      } catch (err) {
+      } catch {
         setErrorMsg("API Connection failure.");
       }
     } else if (gateAction === 'reset-pin') {
@@ -134,7 +207,7 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
           const result = await response.json();
           setErrorMsg(result.error || "Invalid PIN.");
         }
-      } catch (err) {
+      } catch {
         setErrorMsg("API Connection failure.");
       }
     }
@@ -207,6 +280,62 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
               Show Card Details
             </button>
           </div>
+
+          <div className="zenith-card mt-4" style={{ width: '100%', padding: '18px' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 'bold' }}>Advanced Controls</h3>
+            <p className="widget-subtitle">Travel, cross-border access, rewards, and emergency actions</p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '14px' }}>
+              <button
+                type="button"
+                className={`btn ${creditCard?.travelModeEnabled ? 'btn-primary' : 'btn-outline'}`}
+                onClick={handleToggleTravelMode}
+                disabled={creditCard?.frozen}
+              >
+                Travel Mode {creditCard?.travelModeEnabled ? 'On' : 'Off'}
+              </button>
+              <button
+                type="button"
+                className={`btn ${creditCard?.internationalEnabled ? 'btn-primary' : 'btn-outline'}`}
+                onClick={handleToggleInternational}
+                disabled={creditCard?.frozen}
+              >
+                International {creditCard?.internationalEnabled ? 'On' : 'Off'}
+              </button>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '12px' }}>
+              <div style={{ background: 'var(--body-bg)', padding: '12px', borderRadius: '8px', border: '1px solid var(--card-border)' }}>
+                <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Rewards earned</p>
+                <strong>{creditCard?.rewardsEarned || 1250} cashback pts</strong>
+              </div>
+              <button type="button" className="btn btn-outline" onClick={handleReplaceCard}>
+                Replace Card
+              </button>
+            </div>
+            <button
+              type="button"
+              className="btn btn-secondary w-full mt-3"
+              style={{ borderColor: 'var(--danger)', color: 'var(--danger)' }}
+              onClick={() => setShowFraudModal(true)}
+            >
+              Report Fraud
+            </button>
+          </div>
+
+          {creditCard?.frozen && (
+            <div className="lost-card-options mt-4 p-4" style={{ background: 'var(--danger-bg)', borderRadius: 'var(--radius-md)', border: '1px solid rgba(239, 68, 68, 0.2)', width: '100%' }}>
+              <h4 style={{ color: 'var(--danger)', fontWeight: 'bold', fontSize: '14px' }}>⚠️ Lost or Stolen Card?</h4>
+              <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                If you believe your card is permanently lost, you can order a replacement immediately.
+              </p>
+              <button 
+                className="btn btn-outline mt-3 w-full"
+                style={{ borderColor: 'var(--danger)', color: 'var(--danger)', padding: '8px 12px', fontSize: '13px' }}
+                onClick={handleReplaceCard}
+              >
+                Order Replacement Card
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Card Settings Forms */}
@@ -307,6 +436,45 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
           </div>
         </div>
       </div>
+
+      {showFraudModal && (
+        <div className="modal-overlay" onClick={() => setShowFraudModal(false)}>
+          <div className="modal-content security-gate-modal" onClick={e => e.stopPropagation()}>
+            <button className="close-modal-btn" onClick={() => setShowFraudModal(false)}>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <form className="gate-body" onSubmit={handleReportFraud}>
+              <div className="gate-icon-shield">!</div>
+              <h3>Report Card Fraud</h3>
+              <p className="modal-subtitle">This will immediately lock the card and write a security incident for review.</p>
+              <div className="form-group mt-4">
+                <label>Merchant or transaction note</label>
+                <input
+                  className="form-control"
+                  value={fraudMerchant}
+                  onChange={e => setFraudMerchant(e.target.value)}
+                  placeholder="Unrecognized merchant"
+                />
+              </div>
+              <div className="form-group mt-3">
+                <label>Amount</label>
+                <input
+                  className="form-control"
+                  type="number"
+                  min="0"
+                  value={fraudAmount}
+                  onChange={e => setFraudAmount(e.target.value)}
+                  placeholder="4500"
+                />
+              </div>
+              <button className="btn btn-primary w-full mt-4" type="submit">Lock Card & File Report</button>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Security Gate modal */}
       {showPinGate && (

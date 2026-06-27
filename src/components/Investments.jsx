@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Investments({ investments, balance, onTrade, onOpenFD, addNotification }) {
+export default function Investments({ 
+  investments, 
+  balance, 
+  onTrade, 
+  onOpenFD, 
+  addNotification,
+  prefilledInvestment,
+  clearPrefilledInvestment
+}) {
   const [tradeSymbol, setTradeSymbol] = useState('ZENITH');
   const [tradeShares, setTradeShares] = useState('');
   const [tradeAction, setTradeAction] = useState('buy');
@@ -16,6 +24,53 @@ export default function Investments({ investments, balance, onTrade, onOpenFD, a
     'TCS': 3450,
     'RELIANCE': 2450
   };
+
+  useEffect(() => {
+    if (prefilledInvestment) {
+      const symbol = prefilledInvestment.symbol || 'ZENITH';
+      const shares = prefilledInvestment.shares || '';
+      const actionType = prefilledInvestment.actionType || 'buy';
+      setTradeSymbol(symbol);
+      setTradeShares(shares);
+      setTradeAction(actionType);
+      clearPrefilledInvestment();
+
+      if (shares && symbol) {
+        setTimeout(() => {
+          const count = parseInt(shares);
+          const price = assetPrices[symbol] || 185;
+          const totalCost = count * price;
+          if (balance < totalCost && actionType === 'buy') {
+            alert("Insufficient funds in savings account to complete purchase.");
+            return;
+          }
+          if (window.confirm(`Confirm ${actionType.toUpperCase()} order: ${count} shares of ${symbol} for ${formatCurrency(totalCost)}?`)) {
+            fetch('/api/investments/trade', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                symbol,
+                shares: count,
+                type: 'stock',
+                currentPrice: price,
+                action: actionType
+              })
+            }).then(response => {
+              if (response.ok) {
+                onTrade();
+                addNotification(
+                  "Order Executed", 
+                  `Successfully ${actionType === 'buy' ? 'bought' : 'sold'} ${count} shares of ${symbol}.`
+                );
+              } else {
+                response.json().then(res => alert(res.error || "Trade failed."));
+              }
+            }).catch(err => console.error(err));
+          }
+        }, 100);
+      }
+    }
+  }, [prefilledInvestment]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-IN', {

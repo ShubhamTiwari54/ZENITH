@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Loans({ loans, balance, onLoanApproved, addNotification }) {
+export default function Loans({ 
+  loans, 
+  balance, 
+  onLoanApproved, 
+  addNotification,
+  prefilledLoan,
+  clearPrefilledLoan
+}) {
   const [loanType, setLoanType] = useState('Personal Loan');
   const [loanAmount, setLoanAmount] = useState(100000);
   const [loanTenure, setLoanTenure] = useState(24);
@@ -10,6 +17,42 @@ export default function Loans({ loans, balance, onLoanApproved, addNotification 
     'Car Loan': 8.75,
     'Home Loan': 7.25
   };
+
+  useEffect(() => {
+    if (prefilledLoan) {
+      const type = prefilledLoan.type || 'Personal Loan';
+      const amount = prefilledLoan.amount || 100000;
+      const tenure = prefilledLoan.tenureMonths || 24;
+      setLoanType(type);
+      setLoanAmount(amount);
+      setLoanTenure(tenure);
+      clearPrefilledLoan();
+
+      setTimeout(() => {
+        if (window.confirm(`Confirm: Apply for a ${type} of ${formatCurrency(amount)} for ${tenure} months?`)) {
+          fetch('/api/loans/apply', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type,
+              amount,
+              tenureMonths: tenure
+            })
+          }).then(res => {
+            if (res.ok) {
+              onLoanApproved();
+              addNotification(
+                "Loan Approved", 
+                `Your ${type} of ${formatCurrency(amount)} has been disbursed to your savings account!`
+              );
+            } else {
+              alert("Loan application failed.");
+            }
+          }).catch(err => console.error(err));
+        }
+      }, 100);
+    }
+  }, [prefilledLoan]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-IN', {

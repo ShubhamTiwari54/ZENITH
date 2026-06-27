@@ -1,6 +1,6 @@
 {
   "user": {
-    "name": "Kavya",
+    "name": "Shubham Tiwari",
     "email": "kavya.nair@zenithbank.com",
     "phone": "+91 98765 43210",
     "address": "12, Outer Ring Road, Indiranagar, Bengaluru, 560038",
@@ -10,14 +10,120 @@
       "twoFactorEnabled": true,
       "biometricLogin": false,
       "timeoutLimit": 5
-    }
+    },
+    "accessibility": {
+      "language": "en",
+      "fontSize": "normal",
+      "theme": "light",
+      "contrast": "normal",
+      "voiceNavigation": true
+    },
+    "achievements": {
+      "points": 450,
+      "streakDays": 14,
+      "badges": [
+        "Savings Champion",
+        "Smart Spender",
+        "Budget Master"
+      ],
+      "goals": [
+        {
+          "id": "bill_pay",
+          "title": "Pay 4 Bills",
+          "description": "Pay utility bills from dashboard",
+          "target": 4,
+          "current": 2,
+          "points": 100,
+          "claimed": false
+        },
+        {
+          "id": "transfer",
+          "title": "Complete 5 Transfers",
+          "description": "Send money to contacts",
+          "target": 5,
+          "current": 4,
+          "points": 150,
+          "claimed": false
+        },
+        {
+          "id": "fd_open",
+          "title": "FD Safe Keeper",
+          "description": "Open a Fixed Deposit plan",
+          "target": 1,
+          "current": 0,
+          "points": 200,
+          "claimed": false
+        }
+      ]
+    },
+    "trustedDevices": [
+      {
+        "id": "DEV-1",
+        "model": "iPhone 15 Pro Max",
+        "dateAdded": "2026-03-12",
+        "active": true
+      },
+      {
+        "id": "DEV-2",
+        "model": "Chrome v120 / Windows 11 (This Device)",
+        "dateAdded": "2026-06-25",
+        "active": true
+      }
+    ],
+    "biometricEnabled": {
+      "face": false,
+      "fingerprint": false
+    },
+    "dashboardLayout": [
+      "spending",
+      "health",
+      "upcoming",
+      "achievements",
+      "recharge",
+      "insights",
+      "budgets",
+      "transactions",
+      "cibil",
+      "investments"
+    ],
+    "dashboardPriority": "default",
+    "loginHistory": [
+      {
+        "date": "2026-06-25T23:02:35.000Z",
+        "device": "Chrome v120 / Windows 11",
+        "ip": "127.0.0.1",
+        "status": "Success"
+      },
+      {
+        "date": "2026-06-24T10:14:22.000Z",
+        "device": "Chrome v120 / Windows 11",
+        "ip": "127.0.0.1",
+        "status": "Success"
+      },
+      {
+        "date": "2026-06-22T19:05:00.000Z",
+        "device": "iPhone 15 Pro Max",
+        "ip": "192.168.1.5",
+        "status": "Success"
+      }
+    ],
+    "fraudAlerts": [
+      {
+        "id": "FRD-1",
+        "date": "2026-06-24",
+        "merchant": "MockMerchant LLC",
+        "amount": 45000,
+        "status": "Blocked",
+        "action": "Declined"
+      }
+    ]
   },
   "accounts": {
     "savings": {
       "accountNumber": "9876 5432 1098",
       "routingNumber": "ZENI0000109",
-      "balance": 782450.3,
-      "availableBalance": 560230.1
+      "balance": 2118896.29,
+      "availableBalance": 1896676.09
     },
     "current": {
       "accountNumber": "8765 4321 0987",
@@ -27,7 +133,7 @@
     }
   },
   "monthlyIncome": 195000,
-  "monthlyExpenses": 76850,
+  "monthlyExpenses": 153404.01,
   "creditCard": {
     "cardNumber": "4312 8890 5433 4567",
     "cardHolder": "KAVYA NAIR",
@@ -45,38 +151,38 @@
   "spendingBreakdown": [
     {
       "category": "Food & Dining",
-      "percentage": 25,
-      "amount": 19210,
+      "percentage": 22,
+      "amount": 31434,
       "color": "#FF5E8E"
     },
     {
       "category": "Housing",
-      "percentage": 24,
-      "amount": 18430,
+      "percentage": 47,
+      "amount": 67621.01,
       "color": "#7B61FF"
     },
     {
       "category": "Transport",
-      "percentage": 16,
+      "percentage": 9,
       "amount": 12300,
       "color": "#3B82F6"
     },
     {
       "category": "Shopping",
-      "percentage": 14,
-      "amount": 10760,
+      "percentage": 8,
+      "amount": 10761,
       "color": "#10B981"
     },
     {
       "category": "Bills & Utilities",
-      "percentage": 11,
+      "percentage": 6,
       "amount": 8450,
       "color": "#F59E0B"
     },
     {
       "category": "Others",
-      "percentage": 10,
-      "amount": 7700,
+      "percentage": 9,
+      "amount": 12700,
       "color": "#6B7280"
     }
   ],
@@ -85,7 +191,8 @@
     "creditUtilization": "Good",
     "paymentHistory": "100%",
     "derogatoryMarks": "Excellent",
-    "ageOfCredit": "Good"
+    "ageOfCredit": "Good",
+    "aiScore": 89
   },
   "upcomingPayments": [
     {
@@ -94,7 +201,7 @@
       "title": "Credit Card Bill",
       "dueDays": 3,
       "amount": 8750,
-      "paid": false
+      "paid": true
     },
     {
       "id": 2,
@@ -102,7 +209,7 @@
       "title": "Mobile Bill",
       "dueDays": 5,
       "amount": 589,
-      "paid": false
+      "paid": true
     },
     {
       "id": 3,
@@ -110,7 +217,7 @@
       "title": "Internet Bill",
       "dueDays": 7,
       "amount": 799,
-      "paid": false
+      "paid": true
     }
   ],
   "offers": [
@@ -143,6 +250,146 @@
     }
   ],
   "transactions": [
+    {
+      "id": "TXN54032",
+      "date": "2026-06-27T08:01:42.583Z",
+      "merchant": "Rahul Sharma",
+      "description": "Transfer to A/C: 5590",
+      "amount": 12222,
+      "type": "debit",
+      "category": "Food & Dining",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN51846",
+      "date": "2026-06-25T20:39:40.900Z",
+      "merchant": "Rahul Sharma",
+      "description": "Transfer to A/C: 5590",
+      "amount": 5000,
+      "type": "debit",
+      "category": "Others",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN58790",
+      "date": "2026-06-25T18:43:49.622Z",
+      "merchant": "Zenith Loans Dept",
+      "description": "Personal Loan EMI Payment",
+      "amount": 25291.01,
+      "type": "debit",
+      "category": "Housing",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN73855",
+      "date": "2026-06-25T18:42:19.301Z",
+      "merchant": "Aarav Gupta",
+      "description": "Transfer to A/C: 0019",
+      "amount": 1,
+      "type": "debit",
+      "category": "Shopping",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN65672",
+      "date": "2026-06-25T18:39:29.547Z",
+      "merchant": "asmit",
+      "description": "Transfer to A/C: 5677",
+      "amount": 1,
+      "type": "debit",
+      "category": "Food & Dining",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN39188",
+      "date": "2026-06-25T18:07:57.227Z",
+      "merchant": "Zenith Loan Disbursal",
+      "description": "Credited Personal Loan Principal",
+      "amount": 1500000,
+      "type": "credit",
+      "category": "Income",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN24907",
+      "date": "2026-06-25T18:07:51.428Z",
+      "merchant": "Zenith Loans Dept",
+      "description": "Car Loan EMI Payment",
+      "amount": 15400,
+      "type": "debit",
+      "category": "Housing",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN13353",
+      "date": "2026-06-25T18:07:47.085Z",
+      "merchant": "Zenith Loans Dept",
+      "description": "Personal Loan EMI Payment",
+      "amount": 8500,
+      "type": "debit",
+      "category": "Housing",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN53837",
+      "date": "2026-06-25T17:59:43.317Z",
+      "merchant": "Zenith Fixed Deposit",
+      "description": "Opened FD Plan (Maturity: ₹53,750)",
+      "amount": 50000,
+      "type": "debit",
+      "category": "Others",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN34920",
+      "date": "2026-06-25T17:59:29.948Z",
+      "merchant": "Investments: Buy ZENITH",
+      "description": "Bought 200 shares of ZENITH",
+      "amount": 37000,
+      "type": "debit",
+      "category": "Shopping",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN34008",
+      "date": "2026-06-25T17:55:23.479Z",
+      "merchant": "ASsmit",
+      "description": "Transfer to A/C: 7890",
+      "amount": 1,
+      "type": "debit",
+      "category": "Food & Dining",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN22708",
+      "date": "2026-06-25T17:45:10.971Z",
+      "merchant": "Internet Bill",
+      "description": "Paid Bill: Internet Bill",
+      "amount": 799,
+      "type": "debit",
+      "category": "Bills & Utilities",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN63760",
+      "date": "2026-06-25T17:44:14.885Z",
+      "merchant": "Mobile Bill",
+      "description": "Paid Bill: Mobile Bill",
+      "amount": 589,
+      "type": "debit",
+      "category": "Bills & Utilities",
+      "status": "Completed"
+    },
+    {
+      "id": "TXN29859",
+      "date": "2026-06-25T17:44:02.262Z",
+      "merchant": "Credit Card Bill",
+      "description": "Paid Bill: Credit Card Bill",
+      "amount": 8750,
+      "type": "debit",
+      "category": "Bills & Utilities",
+      "status": "Completed"
+    },
     {
       "id": "TXN10001",
       "date": "2026-06-24T18:32:00Z",
@@ -348,6 +595,17 @@
       "tenureMonths": 60,
       "paidMonths": 12,
       "rate": 8.75
+    },
+    {
+      "id": 3,
+      "type": "Personal Loan",
+      "amount": 1500000,
+      "remaining": 1500000,
+      "nextDueDate": "2026-07-25",
+      "monthlyEMI": 25291.01,
+      "tenureMonths": 84,
+      "paidMonths": 0,
+      "rate": 10.5
     }
   ],
   "insurance": [
@@ -372,17 +630,17 @@
   ],
   "investments": {
     "summary": {
-      "stocks": 125000,
+      "stocks": 162000,
       "mutualFunds": 82000,
       "gold": 45000,
-      "fixedDeposits": 150000
+      "fixedDeposits": 200000
     },
     "holdings": [
       {
         "symbol": "ZENITH",
         "name": "Zenith Bancorp",
-        "shares": 150,
-        "avgPrice": 150,
+        "shares": 350,
+        "avgPrice": 170,
         "currentPrice": 185,
         "type": "stock"
       },
@@ -412,10 +670,267 @@
         "startDate": "2025-10-10",
         "maturityAmount": 161250,
         "autoRenew": true
+      },
+      {
+        "id": 2,
+        "amount": 50000,
+        "interestRate": 7.5,
+        "termMonths": 12,
+        "startDate": "2026-06-25",
+        "maturityAmount": 53750,
+        "autoRenew": true
       }
     ]
   },
   "auditLogs": [
+    {
+      "id": "SEC-1782547387611-608",
+      "timestamp": "2026-06-27T08:03:07.611Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782547383148-996",
+      "timestamp": "2026-06-27T08:03:03.148Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782547380405-606",
+      "timestamp": "2026-06-27T08:03:00.405Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782547371786-435",
+      "timestamp": "2026-06-27T08:02:51.786Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=hi, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782547302584-541",
+      "timestamp": "2026-06-27T08:01:42.584Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹12,222 to Rahul Sharma (A/C: 9823 4112 5590)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782419980900-660",
+      "timestamp": "2026-06-25T20:39:40.900Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹5,000 to Rahul Sharma (A/C: 9823 4112 5590)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417206505-128",
+      "timestamp": "2026-06-25T19:53:26.505Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417203870-729",
+      "timestamp": "2026-06-25T19:53:23.870Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417202302-111",
+      "timestamp": "2026-06-25T19:53:22.302Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417190382-678",
+      "timestamp": "2026-06-25T19:53:10.382Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417187636-52",
+      "timestamp": "2026-06-25T19:53:07.637Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=normal",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417185196-950",
+      "timestamp": "2026-06-25T19:53:05.196Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=large",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417179523-370",
+      "timestamp": "2026-06-25T19:52:59.523Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=en, fontSize=medium",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782417177335-330",
+      "timestamp": "2026-06-25T19:52:57.335Z",
+      "action": "Accessibility Configured",
+      "details": "Updated accessibility options: language=hi, fontSize=medium",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782413029622-267",
+      "timestamp": "2026-06-25T18:43:49.622Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹25,291.01 to Zenith Loans Dept (A/C: LOAN-PAY-3)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782412939301-836",
+      "timestamp": "2026-06-25T18:42:19.302Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹1 to Aarav Gupta (A/C: 4509 3321 0019)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782412769547-276",
+      "timestamp": "2026-06-25T18:39:29.547Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹1 to asmit (A/C: 123445677)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782411248845-120",
+      "timestamp": "2026-06-25T18:14:08.845Z",
+      "action": "Biometrics Toggled",
+      "details": "Fingerprint/Face login was disabled",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782411247672-971",
+      "timestamp": "2026-06-25T18:14:07.672Z",
+      "action": "Biometrics Toggled",
+      "details": "Fingerprint/Face login was enabled",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782411119911-342",
+      "timestamp": "2026-06-25T18:11:59.911Z",
+      "action": "Transaction PIN Modified",
+      "details": "User successfully modified their transaction execution PIN",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782411003827-814",
+      "timestamp": "2026-06-25T18:10:03.827Z",
+      "action": "Profile Updated",
+      "details": "User modified their personal contact profile settings",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782411002368-144",
+      "timestamp": "2026-06-25T18:10:02.368Z",
+      "action": "Profile Updated",
+      "details": "User modified their personal contact profile settings",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782410877227-382",
+      "timestamp": "2026-06-25T18:07:57.227Z",
+      "action": "Loan Disbursed",
+      "details": "Approved and credited Personal Loan of ₹15,00,000 with EMI: ₹25,291.01",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782410871428-56",
+      "timestamp": "2026-06-25T18:07:51.428Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹15,400 to Zenith Loans Dept (A/C: LOAN-PAY-2)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782410867085-531",
+      "timestamp": "2026-06-25T18:07:47.085Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹8,500 to Zenith Loans Dept (A/C: LOAN-PAY-1)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782410383317-661",
+      "timestamp": "2026-06-25T17:59:43.317Z",
+      "action": "Fixed Deposit Opened",
+      "details": "Created Fixed Deposit of ₹50,000 for 12 months at 7.5% interest",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782410369948-570",
+      "timestamp": "2026-06-25T17:59:29.948Z",
+      "action": "Asset Purchase",
+      "details": "Purchased 200 shares of ZENITH for ₹37,000",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782410123479-726",
+      "timestamp": "2026-06-25T17:55:23.479Z",
+      "action": "Fund Transfer Executed",
+      "details": "Transferred ₹1 to ASsmit (A/C: 1234567890)",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782409510971-274",
+      "timestamp": "2026-06-25T17:45:10.971Z",
+      "action": "Bill Payment Completed",
+      "details": "Paid bill \"Internet Bill\" of ₹799",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782409454885-885",
+      "timestamp": "2026-06-25T17:44:14.885Z",
+      "action": "Bill Payment Completed",
+      "details": "Paid bill \"Mobile Bill\" of ₹589",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
+    {
+      "id": "SEC-1782409442310-333",
+      "timestamp": "2026-06-25T17:44:02.310Z",
+      "action": "Bill Payment Completed",
+      "details": "Paid bill \"Credit Card Bill\" of ₹8,750",
+      "ip": "127.0.0.1",
+      "device": "Chrome v120 / Windows 11"
+    },
     {
       "id": "SEC-INIT",
       "timestamp": "2026-06-25T10:12:29.742Z",
@@ -432,6 +947,42 @@
       "status": "Closed",
       "date": "2026-06-20",
       "category": "Loans"
+    }
+  ],
+  "dailyTips": [
+    "Consolidate subscriptions to save up to ₹1,500 monthly.",
+    "Your credit utilization is 18%, which is excellent for your score.",
+    "Set aside 20% of your salary within the first 5 days of credit.",
+    "Fixed Deposit rates are currently peaked at 7.5% p.a. Invest now!"
+  ],
+  "contacts": [
+    {
+      "name": "Rahul Sharma",
+      "account": "9823 4112 5590",
+      "bank": "ICICI Bank",
+      "category": "Others"
+    },
+    {
+      "name": "Priya Patel",
+      "account": "7820 1199 4432",
+      "bank": "HDFC Bank",
+      "category": "Others"
+    },
+    {
+      "name": "Aarav Gupta",
+      "account": "4509 3321 0019",
+      "bank": "Axis Bank",
+      "category": "Shopping"
+    }
+  ],
+  "recharges": [
+    {
+      "id": 1,
+      "title": "+91 98765 43210",
+      "type": "Mobile",
+      "provider": "Jio",
+      "amount": 589,
+      "details": "Saved Jio Connection"
     }
   ]
 }

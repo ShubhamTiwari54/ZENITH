@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Payments({ dashboardData, onTransfer, addNotification }) {
+export default function Payments({ 
+  dashboardData, 
+  onTransfer, 
+  addNotification,
+  prefilledPayment,
+  clearPrefilledPayment
+}) {
   const [recipientName, setRecipientName] = useState('');
   const [recipientAccount, setRecipientAccount] = useState('');
   const [bankName, setBankName] = useState('');
@@ -8,6 +14,14 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
   const [category, setCategory] = useState('Others');
   const [remark, setRemark] = useState('');
   
+  // Dynamic Contacts and Saving
+  const [contacts, setContacts] = useState([]);
+  const [saveContact, setSaveContact] = useState(false);
+  const [showAddContact, setShowAddContact] = useState(false);
+  const [newContactName, setNewContactName] = useState('');
+  const [newContactAccount, setNewContactAccount] = useState('');
+  const [newContactBank, setNewContactBank] = useState('');
+
   // Security Modal State
   const [showSecurityGate, setShowSecurityGate] = useState(false);
   const [gateStep, setGateStep] = useState(1); // 1: PIN entry, 2: OTP verification, 3: Success, 4: Error
@@ -16,18 +30,77 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
   const [errorMsg, setErrorMsg] = useState('');
   const [successReceipt, setSuccessReceipt] = useState(null);
 
-  // Quick Pay contacts
-  const savedBillers = [
-    { name: "Rahul Sharma", account: "9823 4112 5590", bank: "ICICI Bank", category: "Others" },
-    { name: "Priya Patel", account: "7820 1199 4432", bank: "HDFC Bank", category: "Others" },
-    { name: "Aarav Gupta", account: "4509 3321 0019", bank: "Axis Bank", category: "Shopping" }
-  ];
+  const fetchContacts = async () => {
+    try {
+      const res = await fetch('/api/contacts');
+      if (res.ok) {
+        const data = await res.json();
+        setContacts(data);
+      }
+    } catch (e) {
+      console.error("Error fetching contacts:", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchContacts();
+  }, []);
+
+  useEffect(() => {
+    if (prefilledPayment) {
+      if (prefilledPayment.addContactName) {
+        setNewContactName(prefilledPayment.addContactName);
+        setShowAddContact(true);
+      } else {
+        setRecipientName(prefilledPayment.recipientName || '');
+        setRecipientAccount(prefilledPayment.recipientAccount || '');
+        setBankName(prefilledPayment.bankName || '');
+        setAmount(prefilledPayment.amount || '');
+        if (prefilledPayment.category) setCategory(prefilledPayment.category);
+        
+        // Auto-open PIN confirmation gate if amount & recipient details are set by AI
+        if (prefilledPayment.amount && prefilledPayment.recipientName) {
+          setPin('');
+          setOtp('');
+          setErrorMsg('');
+          setGateStep(1);
+          setShowSecurityGate(true);
+        }
+      }
+      clearPrefilledPayment();
+    }
+  }, [prefilledPayment]);
 
   const handleQuickPay = (biller) => {
     setRecipientName(biller.name);
     setRecipientAccount(biller.account);
     setBankName(biller.bank);
-    setCategory(biller.category);
+    setCategory(biller.category || 'Others');
+  };
+
+  const handleAddContactSubmit = async (e) => {
+    e.preventDefault();
+    if (!newContactName || !newContactAccount || !newContactBank) {
+      alert("Please fill all beneficiary details.");
+      return;
+    }
+    try {
+      const res = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: newContactName, account: newContactAccount, bank: newContactBank })
+      });
+      if (res.ok) {
+        addNotification("Beneficiary Registered", `Added ${newContactName} to your saved payees.`);
+        setNewContactName('');
+        setNewContactAccount('');
+        setNewContactBank('');
+        setShowAddContact(false);
+        fetchContacts();
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleInitiateTransfer = (e) => {
@@ -70,6 +143,7 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
         body: JSON.stringify({
           recipientName,
           recipientAccount,
+          bankName,
           amount,
           category,
           remark,
@@ -83,6 +157,16 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
         setSuccessReceipt(result.transaction);
         setGateStep(3);
         onTransfer(); // Callback to refresh global state
+
+        // Post contact save if requested
+        if (saveContact) {
+          await fetch('/api/contacts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: recipientName, account: recipientAccount, bank: bankName, category })
+          });
+          fetchContacts();
+        }
         
         // Reset form
         setRecipientName('');
@@ -91,6 +175,7 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
         setAmount('');
         setRemark('');
         setCategory('Others');
+        setSaveContact(false);
       } else {
         setErrorMsg(result.error || "Transfer failed.");
         setGateStep(4);
@@ -199,6 +284,16 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
               />
             </div>
 
+            <div className="form-group" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '12px' }}>
+              <input 
+                type="checkbox" 
+                id="saveContactCheckbox"
+                checked={saveContact} 
+                onChange={e => setSaveContact(e.target.checked)} 
+              />
+              <label htmlFor="saveContactCheckbox" style={{ fontSize: '13px', cursor: 'pointer', margin: 0 }}>Save beneficiary to Quick Transfer contacts</label>
+            </div>
+
             <div className="security-notice-strip">
               <span className="notice-icon">🛡️</span>
               <p>Transactions are protected with 256-bit encryption. Authorization via PIN and OTP is required.</p>
@@ -212,11 +307,38 @@ export default function Payments({ dashboardData, onTransfer, addNotification })
         <div className="payments-sidebar-grid">
           {/* Quick Pay Beneficiaries */}
           <div className="zenith-card saved-billers-card">
-            <h3>Quick Transfer</h3>
-            <p className="widget-subtitle">Select a saved beneficiary to pay instantly</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <h3>Quick Transfer</h3>
+              <button 
+                type="button" 
+                className="btn btn-secondary py-1 px-3 text-xs" 
+                style={{ fontSize: '11px', padding: '4px 8px' }}
+                onClick={() => setShowAddContact(!showAddContact)}
+              >
+                + Add
+              </button>
+            </div>
+            <p className="widget-subtitle" style={{ marginBottom: '12px' }}>Select a saved beneficiary to pay instantly</p>
             
+            {showAddContact && (
+              <form onSubmit={handleAddContactSubmit} className="add-contact-form" style={{ background: 'var(--body-bg)', padding: '16px', borderRadius: '12px', border: '1px solid var(--card-border)', marginBottom: '16px' }}>
+                <h4 style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '8px' }}>New Beneficiary</h4>
+                <div className="form-group" style={{ marginBottom: '8px' }}>
+                  <input type="text" className="form-control" style={{ fontSize: '12px', padding: '6px 10px' }} placeholder="Full Name" value={newContactName} onChange={e => setNewContactName(e.target.value)} required />
+                </div>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                  <input type="text" className="form-control" style={{ fontSize: '12px', padding: '6px 10px', flex: 1 }} placeholder="A/C Number" value={newContactAccount} onChange={e => setNewContactAccount(e.target.value)} required />
+                  <input type="text" className="form-control" style={{ fontSize: '12px', padding: '6px 10px', flex: 1 }} placeholder="Bank Name" value={newContactBank} onChange={e => setNewContactBank(e.target.value)} required />
+                </div>
+                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                  <button type="button" className="btn btn-outline" style={{ fontSize: '11px', padding: '4px 8px' }} onClick={() => setShowAddContact(false)}>Cancel</button>
+                  <button type="submit" className="btn btn-primary" style={{ fontSize: '11px', padding: '4px 8px' }}>Save</button>
+                </div>
+              </form>
+            )}
+
             <div className="billers-list">
-              {savedBillers.map((biller, idx) => (
+              {contacts.map((biller, idx) => (
                 <div key={idx} className="biller-item-row" onClick={() => handleQuickPay(biller)}>
                   <div className="biller-avatar">
                     {biller.name.split(' ').map(n => n[0]).join('')}

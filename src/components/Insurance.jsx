@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Insurance({ insurance, addNotification }) {
+export default function Insurance({ 
+  insurance, 
+  addNotification,
+  prefilledClaim,
+  clearPrefilledClaim
+}) {
   const [selectedPlan, setSelectedPlan] = useState('health'); // health, auto, life
   const [coverageAmt, setCoverageAmt] = useState(500000);
   const [userAge, setUserAge] = useState(30);
@@ -9,6 +14,47 @@ export default function Insurance({ insurance, addNotification }) {
   const [claimPolicy, setClaimPolicy] = useState('1');
   const [claimAmount, setClaimAmount] = useState('');
   const [claimReason, setClaimReason] = useState('');
+
+  useEffect(() => {
+    if (prefilledClaim) {
+      const policyId = String(prefilledClaim.policyId || '1');
+      const amount = prefilledClaim.claimAmount || '';
+      const reason = prefilledClaim.details || '';
+      setClaimPolicy(policyId);
+      setClaimAmount(amount);
+      setClaimReason(reason);
+      clearPrefilledClaim();
+
+      if (amount && reason) {
+        setTimeout(() => {
+          if (window.confirm(`Confirm: Lodge a claim of ${formatCurrency(amount)} against policy ${policyId}?`)) {
+            fetch('/api/insurance/claim', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                policyId,
+                claimAmount: amount,
+                details: reason
+              })
+            }).then(res => {
+              if (res.ok) {
+                res.json().then(result => {
+                  addNotification(
+                    "Claim Lodged", 
+                    `Registered Claim ${result.claimId} of ${formatCurrency(amount)} for verification.`
+                  );
+                  setClaimAmount('');
+                  setClaimReason('');
+                });
+              } else {
+                alert("Failed to submit claim.");
+              }
+            }).catch(err => console.error(err));
+          }
+        }, 100);
+      }
+    }
+  }, [prefilledClaim]);
 
   const plans = {
     health: { title: "Zenith Care Plan", rateFactor: 0.0024 },

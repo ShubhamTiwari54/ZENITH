@@ -1,10 +1,128 @@
 import React from 'react';
 
-export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setSidebarOpen, notificationCount }) {
+const sidebarTranslations = {
+  en: {
+    brandName: "Zenith Bank",
+    supportHeader: "Contact Support",
+    supportSubtitle: "We are here to help you!",
+    dashboard: "Dashboard",
+    accounts: "Accounts",
+    payments: "Payments",
+    cards: "Cards",
+    investments: "Investments",
+    loans: "Loans",
+    insurance: "Insurance",
+    budget: "Budget Planner",
+    offers: "Offers",
+    support: "Support Helpdesk",
+    settings: "Settings"
+  },
+  hi: {
+    brandName: "जेनिथ बैंक",
+    supportHeader: "सहायता डेस्क",
+    supportSubtitle: "हम आपकी सहायता के लिए हैं!",
+    dashboard: "डैशबोर्ड",
+    accounts: "खाते",
+    payments: "भुगतान",
+    cards: "कार्ड",
+    investments: "निवेश",
+    loans: "ऋण",
+    insurance: "बीमा",
+    budget: "बजट योजना",
+    offers: "ऑफ़र",
+    support: "सहायता डेस्क",
+    settings: "सेटिंग्स"
+  },
+  ta: {
+    brandName: "ஜெனித் வங்கி",
+    supportHeader: "உதவி மையம்",
+    supportSubtitle: "நாங்கள் உங்களுக்கு உதவ இங்கே இருக்கிறோம்!",
+    dashboard: "டாஷ்போர்டு",
+    accounts: "கணக்குகள்",
+    payments: "செலுத்தல்கள்",
+    cards: "அட்டைகள்",
+    investments: "முதலீடுகள்",
+    loans: "கடன்கள்",
+    insurance: "காப்பீடு",
+    budget: "பட்ஜெட் திட்டமிடுபவர்",
+    offers: "சலுகைகள்",
+    support: "உதவி மையம்",
+    settings: "அமைப்புகள்"
+  },
+  te: {
+    brandName: "జెనిత్ బ్యాంక్",
+    supportHeader: "సహాయ కేంద్రం",
+    supportSubtitle: "మేము సహాయం చేయడానికి ఇక్కడ ఉన్నాము!",
+    dashboard: "డాష్‌బోర్డ్",
+    accounts: "ఖాతాలు",
+    payments: "చెల్లింపులు",
+    cards: "కార్డులు",
+    investments: "పెట్టుబడులు",
+    loans: "రుణాలు",
+    insurance: "భీమా",
+    budget: "బడ్జెట్ ప్లానర్",
+    offers: "ఆఫర్లు",
+    support: "సహాయ కేంద్రం",
+    settings: "సెట్టింగులు"
+  },
+  bn: {
+    brandName: "জেনিথ ব্যাংক",
+    supportHeader: "যোগাযোগ হেল্পডেস্ক",
+    supportSubtitle: "আমরা সাহায্য করতে প্রস্তুত!",
+    dashboard: "ড্যাশবোর্ড",
+    accounts: "অ্যাকাউন্টস",
+    payments: "পেমেন্টস",
+    cards: "কার্ডস",
+    investments: "বিনিয়োগ",
+    loans: "লোন",
+    insurance: "বীমা",
+    budget: "বাজেট প্ল্যানার",
+    offers: "অফার",
+    support: "হেল্পডেস্ক",
+    settings: "সেটিংস"
+  },
+  mr: {
+    brandName: "जेनिथ बँक",
+    supportHeader: "मदत कक्ष",
+    supportSubtitle: "आम्ही तुमच्या मदतीसाठी आहोत!",
+    dashboard: "डॅशबोर्ड",
+    accounts: "खाते",
+    payments: "भुगतान",
+    cards: "कार्ड्स",
+    investments: "गुंतवणूक",
+    loans: "कर्ज",
+    insurance: "विमा",
+    budget: "बजेट नियोजन",
+    offers: "ऑफर्स",
+    support: "मदत कक्ष",
+    settings: "सेटिंग्ज"
+  },
+  gu: {
+    brandName: "ઝેનિથ બેંક",
+    supportHeader: "હેલ્પડેસ્ક",
+    supportSubtitle: "અમે તમારી મદદ માટે અહીં છીએ!",
+    dashboard: "ડેશબોર્ડ",
+    accounts: "ખાતાઓ",
+    payments: "ચુકવણીઓ",
+    cards: "કાર્ડ્સ",
+    investments: "રોકાણો",
+    loans: "લોન",
+    insurance: "વીમો",
+    budget: "બજેટ પ્લાનર",
+    offers: "ઓફર્સ",
+    support: "હેલ્પડેસ્ક",
+    settings: "સેટિંગ્સ"
+  }
+};
+
+export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setSidebarOpen, notificationCount, language }) {
+  const activeLang = language || 'en';
+  const t = sidebarTranslations[activeLang] || sidebarTranslations.en;
+
   const menuItems = [
     {
       id: 'dashboard',
-      label: 'Dashboard',
+      label: t.dashboard,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="3" width="7" height="9" />
@@ -16,7 +134,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'accounts',
-      label: 'Accounts',
+      label: t.accounts,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="4" width="18" height="16" rx="2" ry="2" />
@@ -28,7 +146,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'payments',
-      label: 'Payments',
+      label: t.payments,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="5" x2="12" y2="19" />
@@ -38,7 +156,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'cards',
-      label: 'Cards',
+      label: t.cards,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
@@ -48,7 +166,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'investments',
-      label: 'Investments',
+      label: t.investments,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="20" x2="18" y2="10" />
@@ -59,7 +177,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'loans',
-      label: 'Loans',
+      label: t.loans,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -71,7 +189,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'insurance',
-      label: 'Insurance',
+      label: t.insurance,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -80,7 +198,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'budget',
-      label: 'Budget Planner',
+      label: t.budget,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="1" x2="12" y2="23" />
@@ -90,7 +208,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'offers',
-      label: 'Offers',
+      label: t.offers,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="20 12 20 22 4 22 4 12" />
@@ -103,7 +221,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'support',
-      label: 'Support',
+      label: t.support,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -112,7 +230,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
     },
     {
       id: 'settings',
-      label: 'Settings',
+      label: t.settings,
       icon: (
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="3" />
@@ -124,7 +242,6 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
 
   return (
     <>
-      {/* Mobile Sidebar Overlay */}
       <div 
         className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`}
         onClick={() => setSidebarOpen(false)}
@@ -137,7 +254,7 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
           </div>
-          <span>Zenith Bank</span>
+          <span>{t.brandName}</span>
           <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)}>
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -168,12 +285,12 @@ export default function Sidebar({ currentPage, setCurrentPage, sidebarOpen, setS
         <div className="sidebar-footer">
           <div className="support-card" onClick={() => setCurrentPage('support')}>
             <div className="support-card-header">
-              <span>Contact Support</span>
+              <span>{t.supportHeader}</span>
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </div>
-            <p>We are here to help you!</p>
+            <p>{t.supportSubtitle}</p>
             <div className="support-card-icons">
               <div className="icon-circle">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
