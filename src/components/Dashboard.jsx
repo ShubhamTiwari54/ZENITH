@@ -336,7 +336,7 @@ export default function Dashboard({
           <h2 className="balance-amount font-display" style={{ fontSize: '28px', marginTop: '6px' }}>
             {hideBalance ? "₹ *,**,***.**" : formatCurrency(accounts.savings.availableBalance)}
           </h2>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', fontSize: '11px', color: 'var(--text-secondary)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', fontSize: '11px', color: 'rgba(255, 255, 255, 0.75)' }}>
             <span>Ledger: {hideBalance ? "₹ *,**,***.**" : formatCurrency(accounts.savings.balance)}</span>
             <span>A/C: ...1098</span>
           </div>
@@ -350,7 +350,7 @@ export default function Dashboard({
           <h2 className="balance-amount font-display" style={{ fontSize: '28px', marginTop: '6px' }}>
             {hideBalance ? "₹ *,**,***.**" : formatCurrency(accounts.current.availableBalance)}
           </h2>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', fontSize: '11px', color: 'var(--text-secondary)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', fontSize: '11px', color: 'rgba(255, 255, 255, 0.75)' }}>
             <span>Ledger: {hideBalance ? "₹ *,**,***.**" : formatCurrency(accounts.current.balance)}</span>
             <span>A/C: ...0987</span>
           </div>

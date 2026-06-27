@@ -2,7 +2,7 @@ import React from 'react';
 
 const sidebarTranslations = {
   en: {
-    brandName: "Zenith Bank",
+    brandName: "Zenith AI",
     supportHeader: "Contact Support",
     supportSubtitle: "We are here to help you!",
     dashboard: "Dashboard",
@@ -18,7 +18,7 @@ const sidebarTranslations = {
     settings: "Settings"
   },
   hi: {
-    brandName: "जेनिथ बैंक",
+    brandName: "जेनिथ एआई",
     supportHeader: "सहायता डेस्क",
     supportSubtitle: "हम आपकी सहायता के लिए हैं!",
     dashboard: "डैशबोर्ड",
@@ -34,7 +34,7 @@ const sidebarTranslations = {
     settings: "सेटिंग्स"
   },
   ta: {
-    brandName: "ஜெனித் வங்கி",
+    brandName: "ஜெனித் ஏஐ",
     supportHeader: "உதவி மையம்",
     supportSubtitle: "நாங்கள் உங்களுக்கு உதவ இங்கே இருக்கிறோம்!",
     dashboard: "டாஷ்போர்டு",
@@ -50,7 +50,7 @@ const sidebarTranslations = {
     settings: "அமைப்புகள்"
   },
   te: {
-    brandName: "జెనిత్ బ్యాంక్",
+    brandName: "జెనిత్ ఏఐ",
     supportHeader: "సహాయ కేంద్రం",
     supportSubtitle: "మేము సహాయం చేయడానికి ఇక్కడ ఉన్నాము!",
     dashboard: "డాష్‌బోర్డ్",
@@ -66,7 +66,7 @@ const sidebarTranslations = {
     settings: "సెట్టింగులు"
   },
   bn: {
-    brandName: "জেনিথ ব্যাংক",
+    brandName: "জেনিথ এআই",
     supportHeader: "যোগাযোগ হেল্পডেস্ক",
     supportSubtitle: "আমরা সাহায্য করতে প্রস্তুত!",
     dashboard: "ড্যাশবোর্ড",
@@ -82,7 +82,7 @@ const sidebarTranslations = {
     settings: "সেটিংস"
   },
   mr: {
-    brandName: "जेनिथ बँक",
+    brandName: "जेनिथ एआय",
     supportHeader: "मदत कक्ष",
     supportSubtitle: "आम्ही तुमच्या मदतीसाठी आहोत!",
     dashboard: "डॅशबोर्ड",
@@ -98,7 +98,7 @@ const sidebarTranslations = {
     settings: "सेटिंग्ज"
   },
   gu: {
-    brandName: "ઝેનિથ બેંક",
+    brandName: "ઝેનિથ એઆઈ",
     supportHeader: "હેલ્પડેસ્ક",
     supportSubtitle: "અમે તમારી મદદ માટે અહીં છીએ!",
     dashboard: "ડેશબોર્ડ",

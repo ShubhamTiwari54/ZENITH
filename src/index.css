@@ -854,7 +854,7 @@ a {
 }
 
 .welcome-subtitle {
-  color: var(--text-secondary);
+  color: #ffffff;
   font-size: 15px;
 }
 
@@ -3710,7 +3710,6 @@ a {
   border-color: var(--card-border);
 }
 
-.app-container.theme-dark .welcome-subtitle,
 .app-container.theme-dark .available-sub,
 .app-container.theme-dark .available-sub strong,
 .app-container.theme-dark .available-sub span,
