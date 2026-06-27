@@ -4270,3 +4270,1292 @@ a {
   animation: spin 0.8s linear infinite;
   display: inline-block;
 }
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVE OVERRIDES
+   ========================================================================== */
+
+/* ── Tablet (max-width: 1024px) ── */
+@media (max-width: 1024px) {
+  .page-container {
+    padding: 20px 20px 32px;
+  }
+
+  .welcome-title {
+    font-size: 24px;
+  }
+
+  .balance-amount {
+    font-size: 24px;
+  }
+
+  .kpi-value {
+    font-size: 20px;
+  }
+
+  .header-mesh {
+    height: 220px;
+  }
+
+  .ai-chat-drawer {
+    width: 340px;
+    height: 480px;
+  }
+
+  .premium-credit-card {
+    width: 320px;
+    height: 200px;
+    padding: 20px;
+  }
+
+  .cc-card-number-large {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .dropdown-panel {
+    width: 290px;
+    padding: 16px;
+  }
+
+  .toast-alert-item {
+    width: 260px;
+  }
+}
+
+/* ── Small Tablet / Large Phone (max-width: 768px) ── */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px 14px 28px;
+  }
+
+  .header {
+    height: 64px;
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .profile-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .user-profile {
+    padding-left: 4px;
+  }
+
+  .header-mesh {
+    height: 200px;
+    border-bottom-right-radius: 28px;
+  }
+
+  .welcome-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .welcome-title {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .welcome-subtitle {
+    font-size: 13px;
+  }
+
+  .btn-custom-view {
+    align-self: flex-start;
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .customize-toggles {
+    gap: 12px;
+  }
+
+  .toggle-label {
+    font-size: 12px;
+  }
+
+  /* KPI Grid */
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .kpi-card {
+    padding: 16px;
+    min-height: 110px;
+  }
+
+  .balance-amount {
+    font-size: 22px;
+  }
+
+  .card-top {
+    font-size: 11px;
+  }
+
+  .kpi-value {
+    font-size: 18px;
+  }
+
+  /* Middle Widgets */
+  .middle-widgets-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .widget-card {
+    min-height: auto;
+  }
+
+  .widget-card h3 {
+    font-size: 16px;
+  }
+
+  /* Spending chart */
+  .donut-chart-container {
+    width: 140px;
+    height: 140px;
+  }
+
+  .inner-amt {
+    font-size: 17px;
+  }
+
+  .spending-legend {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .legend-item {
+    font-size: 11px;
+  }
+
+  /* Gauge chart */
+  .gauge-container {
+    width: 160px;
+    height: 96px;
+  }
+
+  .gauge-score {
+    font-size: 28px;
+  }
+
+  /* Offers grid */
+  .offers-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .offer-card {
+    min-height: 150px;
+  }
+
+  /* Accounts grid */
+  .accounts-list-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Transactions table */
+  .filter-bar-row {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .search-box-txn {
+    width: 100%;
+  }
+
+  .category-chips {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chip {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .log-header-row {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .export-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Cards layout */
+  .cards-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .premium-credit-card {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    min-height: 190px;
+    padding: 20px;
+  }
+
+  .card-actions-row {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  /* Payments layout */
+  .payments-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-double-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Investments layout */
+  .wealth-grid-overview {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .invest-actions-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Loans layout */
+  .loans-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .loan-details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Insurance layout */
+  .insurance-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Budget layout */
+  .budget-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Offers page layout */
+  .offers-layout-grid-custom {
+    grid-template-columns: 1fr;
+  }
+
+  /* Support layout */
+  .support-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chatbot-card {
+    height: 420px;
+  }
+
+  /* Settings layout */
+  .settings-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Dropdown panels */
+  .dropdown-panel {
+    width: 280px;
+    right: -40px;
+  }
+
+  .rewards-panel,
+  .messages-panel,
+  .notifications-panel {
+    position: fixed;
+    top: 64px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+    z-index: 1001;
+  }
+
+  /* AI assistant */
+  .ai-assistant-wrapper {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .ai-orb-button {
+    width: 52px;
+    height: 52px;
+  }
+
+  .ai-chat-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    z-index: 99999;
+  }
+
+  /* Toast */
+  .toast-container {
+    bottom: 80px;
+    right: 12px;
+    left: 12px;
+  }
+
+  .toast-alert-item {
+    width: 100%;
+  }
+
+  /* Modals */
+  .modal-content {
+    width: 94%;
+    padding: 24px 20px;
+  }
+
+  .lockscreen-content {
+    width: 280px;
+  }
+
+  .biometric-modal-content {
+    width: 300px;
+    padding: 24px;
+  }
+
+  /* Credit card details responsive */
+  .cc-number {
+    font-size: 15px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Payment row items */
+  .payment-row-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .payment-action-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Receipt box */
+  .receipt-box {
+    padding: 12px;
+  }
+
+  /* Credit card table row */
+  .cc-details {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Policy details */
+  .policy-details-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Promo banners */
+  .promo-row-banner {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .promo-banner-right {
+    width: 100%;
+  }
+
+  .promo-copy-btn {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Rewards */
+  .rew-summary-content {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .rew-badge-large {
+    font-size: 36px;
+  }
+
+  .redemption-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Bank selection grid */
+  .bank-select-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Plan selector */
+  .plan-selector-grid {
+    flex-wrap: wrap;
+  }
+
+  .plan-opt-btn {
+    min-width: calc(50% - 6px);
+  }
+
+  /* Daily tips */
+  .daily-tips-ticker {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+}
+
+/* ── Phone (max-width: 480px) ── */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 12px 10px 24px;
+  }
+
+  .header {
+    height: 56px;
+    padding: 0 10px;
+  }
+
+  .action-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .action-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .online-indicator {
+    width: 8px;
+    height: 8px;
+  }
+
+  .header-mesh {
+    height: 180px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .welcome-title {
+    font-size: 20px;
+  }
+
+  .welcome-subtitle {
+    font-size: 12px;
+  }
+
+  /* KPI Grid - single column on very small */
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kpi-card {
+    padding: 14px;
+    min-height: 100px;
+  }
+
+  .kpi-card.balance-card {
+    padding: 16px;
+  }
+
+  .balance-amount {
+    font-size: 20px;
+  }
+
+  .card-top {
+    font-size: 10px;
+  }
+
+  .available-sub {
+    font-size: 11px;
+  }
+
+  .kpi-value {
+    font-size: 17px;
+  }
+
+  /* Credit card widget on dashboard */
+  .cc-widget {
+    padding: 16px;
+  }
+
+  .cc-number {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .cc-details {
+    gap: 6px;
+  }
+
+  /* Spending section */
+  .spending-legend {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .legend-item {
+    font-size: 11px;
+  }
+
+  .donut-chart-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .inner-amt {
+    font-size: 15px;
+  }
+
+  .inner-lbl {
+    font-size: 9px;
+  }
+
+  /* Health gauge */
+  .gauge-container {
+    width: 140px;
+    height: 84px;
+  }
+
+  .gauge-score {
+    font-size: 24px;
+  }
+
+  .gauge-label {
+    font-size: 11px;
+  }
+
+  .health-detail-row {
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Widgets */
+  .middle-widgets-grid {
+    gap: 12px;
+  }
+
+  .widget-card h3 {
+    font-size: 15px;
+  }
+
+  .widget-subtitle {
+    font-size: 11px;
+  }
+
+  .widget-header-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  /* Offers section */
+  .offers-section h3 {
+    font-size: 17px;
+  }
+
+  .offer-title {
+    font-size: 14px;
+  }
+
+  .offer-subtitle {
+    font-size: 11px;
+  }
+
+  .offer-card {
+    padding: 16px;
+    min-height: auto;
+  }
+
+  /* Upcoming payments */
+  .payment-row-item {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .payment-icon-box {
+    width: 32px;
+    height: 32px;
+  }
+
+  .payment-info h4 {
+    font-size: 13px;
+  }
+
+  .payment-info p {
+    font-size: 10px;
+  }
+
+  .payment-amt {
+    font-size: 13px;
+  }
+
+  .pay-btn-instant {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  /* Table scrolling */
+  .transactions-table-container {
+    margin: 0 -10px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .txn-table th,
+  .txn-table td {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .holdings-table th,
+  .holdings-table td {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  /* Premium credit card */
+  .premium-credit-card {
+    padding: 16px;
+    min-height: 170px;
+    border-radius: 16px;
+  }
+
+  .cc-card-number-large {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .cc-logo-top {
+    font-size: 12px;
+  }
+
+  .cc-logo-visa {
+    font-size: 15px;
+  }
+
+  .chip-gold {
+    width: 34px;
+    height: 26px;
+  }
+
+  .cc-lbl-micro {
+    font-size: 8px;
+  }
+
+  .cc-val-micro {
+    font-size: 11px;
+  }
+
+  .cc-card-footer {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .card-actions-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card-actions-row button {
+    width: 100%;
+  }
+
+  /* Slider controls */
+  .slider-label-row {
+    font-size: 12px;
+  }
+
+  /* Loan details */
+  .loan-details-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .detail-box {
+    padding: 8px 10px;
+  }
+
+  .detail-box span {
+    font-size: 9px;
+  }
+
+  .detail-box strong {
+    font-size: 13px;
+  }
+
+  .loan-item-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .loan-item-top h4 {
+    font-size: 14px;
+  }
+
+  /* Wealth overview */
+  .wealth-summary-card h2 {
+    font-size: 24px;
+  }
+
+  .alloc-labels {
+    font-size: 10px;
+  }
+
+  /* Stock trading */
+  .trade-estimate-display {
+    font-size: 15px;
+  }
+
+  /* Insurance */
+  .policy-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .policy-header h4 {
+    font-size: 14px;
+  }
+
+  /* Budget */
+  .bud-item-top h4 {
+    font-size: 13px;
+  }
+
+  /* Chatbot card */
+  .chatbot-card {
+    height: 360px;
+  }
+
+  .bubble {
+    max-width: 90%;
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  /* Chat input */
+  .chat-input-bar {
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .chat-text-input {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .chat-send-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Ticket items */
+  .ticket-top-line strong {
+    font-size: 12px;
+  }
+
+  .ticket-bottom-line {
+    font-size: 10px;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* Settings toggles */
+  .toggle-row-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .toggle-row-item h4 {
+    font-size: 13px;
+  }
+
+  .toggle-row-item p {
+    font-size: 11px;
+  }
+
+  /* Audit timeline */
+  .audit-timeline {
+    gap: 14px;
+  }
+
+  .timeline-content-box {
+    padding: 10px 12px;
+  }
+
+  .timeline-header-meta strong {
+    font-size: 12px;
+  }
+
+  /* Buttons - bigger touch targets */
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+
+  .btn-sm {
+    padding: 6px 10px;
+    font-size: 11px;
+    min-height: 32px;
+  }
+
+  /* Form inputs - bigger touch targets */
+  .form-control {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .form-group label {
+    font-size: 11px;
+  }
+
+  /* AI assistant mobile */
+  .ai-orb-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .orb-inner {
+    font-size: 20px;
+  }
+
+  .ai-chat-header {
+    padding: 12px;
+  }
+
+  .ai-chat-title h4 {
+    font-size: 14px;
+  }
+
+  .ai-chat-messages {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .chat-bubble {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .ai-chat-suggestions {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+
+  .ai-chat-suggestions .chip {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .ai-chat-input-bar {
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .chat-input {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  /* Lockscreen */
+  .lockscreen-content {
+    width: 260px;
+  }
+
+  .lockscreen-content h2 {
+    font-size: 20px;
+  }
+
+  .lock-icon-circ {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  /* Biometrics modal */
+  .biometric-modal-content {
+    width: 280px;
+    padding: 20px;
+  }
+
+  .face-scanner-box {
+    width: 150px;
+    height: 150px;
+  }
+
+  .scanner-oval-target {
+    width: 126px;
+    height: 126px;
+    top: 12px;
+    left: 12px;
+  }
+
+  .fingerprint-scanner-box {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Toast positioning for mobile with AI orb */
+  .toast-container {
+    bottom: 70px;
+    left: 8px;
+    right: 8px;
+  }
+
+  /* Search results dropdown */
+  .search-results-dropdown {
+    max-height: 300px !important;
+  }
+
+  /* Zenith card base */
+  .zenith-card {
+    padding: 16px;
+  }
+
+  /* Fix overflow for horizontal scrollable tables */
+  .holdings-list-table {
+    margin: 16px -10px 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  /* Sidebar when open on phone */
+  .sidebar {
+    width: 260px;
+    padding: 24px 16px;
+  }
+
+  .sidebar-brand {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .logo-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .menu-item {
+    padding: 10px 12px;
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .support-card {
+    padding: 14px;
+  }
+
+  /* Section headers */
+  .log-header-row h3,
+  .offers-section h3 {
+    font-size: 16px;
+  }
+
+  /* Modal report */
+  .credit-report-modal {
+    max-width: 100%;
+  }
+
+  .factor-row {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  /* Customize panel */
+  .customize-panel {
+    padding: 12px 14px;
+  }
+
+  .customize-toggles {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Account detail cards */
+  .account-detail-card {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .ac-title {
+    font-size: 14px;
+  }
+
+  .ac-balance-sec h2 {
+    font-size: 20px;
+  }
+
+  /* Transfer limits */
+  .limit-top {
+    font-size: 11px;
+  }
+
+  /* Rewards summary */
+  .rew-summary-content h2 {
+    font-size: 22px;
+  }
+
+  .red-store-item {
+    padding: 14px;
+  }
+
+  .red-item-title {
+    font-size: 13px;
+  }
+
+  /* FD items */
+  .fd-item-header {
+    font-size: 13px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* Progress labels */
+  .progress-lbl {
+    font-size: 11px;
+  }
+
+  /* Header actions spacing fix */
+  .header-actions {
+    gap: 6px;
+  }
+
+  /* Fix for welcome text not overlapping */
+  .welcome-section {
+    gap: 8px;
+  }
+}
+
+/* ── Very Small Phones (max-width: 360px) ── */
+@media (max-width: 360px) {
+  .page-container {
+    padding: 10px 8px 20px;
+  }
+
+  .header {
+    height: 50px;
+    padding: 0 8px;
+  }
+
+  .welcome-title {
+    font-size: 18px;
+  }
+
+  .balance-amount {
+    font-size: 18px;
+  }
+
+  .kpi-card {
+    padding: 12px;
+    min-height: 90px;
+  }
+
+  .header-mesh {
+    height: 160px;
+  }
+
+  .action-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .premium-credit-card {
+    padding: 14px;
+    min-height: 160px;
+  }
+
+  .cc-card-number-large {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+
+  .wealth-summary-card h2 {
+    font-size: 20px;
+  }
+
+  .ai-orb-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .orb-inner {
+    font-size: 18px;
+  }
+
+  .sidebar {
+    width: 240px;
+  }
+
+  .menu-item {
+    font-size: 13px;
+    padding: 9px 10px;
+  }
+}
+
+/* ── Touch-friendly interactive elements ── */
+@media (hover: none) and (pointer: coarse) {
+  /* Prevent hover transforms on touch devices */
+  .zenith-card:hover {
+    transform: none;
+  }
+
+  .premium-credit-card:hover {
+    transform: none;
+  }
+
+  .support-card:hover {
+    transform: none;
+  }
+
+  .biller-item-row:hover {
+    transform: none;
+  }
+
+  .action-btn:hover {
+    transform: none;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+
+  /* Ensure minimum touch target sizes */
+  .chip {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .pay-btn-instant {
+    min-height: 36px;
+  }
+
+  .menu-item {
+    min-height: 44px;
+  }
+
+  .view-all-link,
+  .view-report-link,
+  .offer-link-btn {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .biller-item-row {
+    min-height: 48px;
+  }
+}
+
+/* ── Landscape phone fix ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header-mesh {
+    height: 140px;
+  }
+
+  .ai-chat-drawer {
+    height: 100vh;
+  }
+
+  .lockscreen-content {
+    transform: scale(0.85);
+  }
+
+  .biometric-modal-content {
+    transform: scale(0.85);
+  }
+}
+
+/* ── Safe area insets for notched phones ── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .ai-assistant-wrapper {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .toast-container {
+    bottom: calc(70px + env(safe-area-inset-bottom));
+  }
+
+  .sidebar {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ── Print-safe & prevent overflow globally on small screens ── */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  img,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

@@ -151,12 +151,14 @@ export default function App() {
     window.addEventListener('mousemove', resetInactivity);
     window.addEventListener('keydown', resetInactivity);
     window.addEventListener('click', resetInactivity);
+    window.addEventListener('touchstart', resetInactivity);
 
     return () => {
       clearInterval(interval);
       window.removeEventListener('mousemove', resetInactivity);
       window.removeEventListener('keydown', resetInactivity);
       window.removeEventListener('click', resetInactivity);
+      window.removeEventListener('touchstart', resetInactivity);
     };
   }, [settings, sessionLocked]);
 
