@@ -523,7 +523,7 @@ export default function Dashboard({
             case 'achievements':
               return (
                 <div key="achievements" className="zenith-card widget-card achievements-card" style={{ padding: '24px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
                     <h3 style={{ fontSize: '18px', fontWeight: 'bold' }}>🏆 Achievements & Rewards</h3>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span className="badge badge-success" style={{ padding: '4px 10px', fontSize: '12px' }}>{achievementsState?.points || 450} pts</span>
@@ -570,7 +570,7 @@ export default function Dashboard({
                   ) : (
                     achievementsState && (
                       <div className="achievements-content">
-                        <div className="streak-indicator" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--body-bg)', padding: '12px', borderRadius: '12px', marginBottom: '16px' }}>
+                        <div className="streak-indicator" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--body-bg)', padding: '12px', borderRadius: '12px', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
                           <span style={{ fontSize: '13px', fontWeight: 'medium' }}>🔥 {achievementsState.streakDays}-Day Savings Streak</span>
                           <button className="btn btn-secondary py-1 px-3 text-xs" style={{ fontSize: '11px', padding: '4px 8px' }} onClick={handleClaimStreak}>Claim Streak +50</button>
                         </div>
@@ -637,7 +637,7 @@ export default function Dashboard({
                       <div className="form-group" style={{ marginBottom: '8px' }}>
                         <input type="text" className="form-control" style={{ fontSize: '12px', padding: '6px 10px' }} placeholder="Biller Name (e.g. Mom's Phone)" value={billerTitle} onChange={e => setBillerTitle(e.target.value)} required />
                       </div>
-                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
                         <select className="form-control" style={{ fontSize: '12px', padding: '6px 10px', flex: 1 }} value={billerType} onChange={e => setBillerType(e.target.value)}>
                           <option value="Mobile">Mobile</option>
                           <option value="Electricity">Electricity</option>
@@ -646,7 +646,7 @@ export default function Dashboard({
                         </select>
                         <input type="text" className="form-control" style={{ fontSize: '12px', padding: '6px 10px', flex: 1 }} placeholder="Provider (e.g. Jio, BESCOM)" value={billerProvider} onChange={e => setBillerProvider(e.target.value)} required />
                       </div>
-                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
                         <input type="number" className="form-control" style={{ fontSize: '12px', padding: '6px 10px', flex: 1 }} placeholder="Default Bill (₹)" value={billerAmount} onChange={e => setBillerAmount(e.target.value)} required />
                         <input type="text" className="form-control" style={{ fontSize: '12px', padding: '6px 10px', flex: 1 }} placeholder="Consumer/Mobile ID" value={billerDetails} onChange={e => setBillerDetails(e.target.value)} />
                       </div>
@@ -662,17 +662,17 @@ export default function Dashboard({
                       <p style={{ fontSize: '13px', color: 'var(--text-muted)', textAlign: 'center' }}>No saved billers.</p>
                     ) : (
                       rechargesList.map((item) => (
-                        <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--body-bg)', padding: '12px', borderRadius: '12px', border: '1px solid var(--card-border)' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--body-bg)', padding: '12px', borderRadius: '12px', border: '1px solid var(--card-border)', flexWrap: 'wrap', gap: '8px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
                             <div style={{ fontSize: '20px', width: '36px', height: '36px', borderRadius: '50%', background: 'var(--primary-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                               {item.type === 'Mobile' ? '📱' : item.type === 'Electricity' ? '💡' : item.type === 'TV' ? '📺' : '💧'}
                             </div>
-                            <div>
+                            <div style={{ minWidth: 0 }}>
                               <h4 style={{ fontSize: '13px', fontWeight: 'bold' }}>{item.title}</h4>
-                              <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{item.provider} • {item.details}</p>
+                              <p style={{ fontSize: '11px', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.provider} • {item.details}</p>
                             </div>
                           </div>
-                          <div style={{ textAlignment: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+                          <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
                             <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--primary)' }}>₹{item.amount}</span>
                             <button 
                               className="btn btn-primary" 
@@ -718,13 +718,13 @@ export default function Dashboard({
               return (
                 <div key="transactions" className="zenith-card widget-card" style={{ padding: '24px' }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold' }}>Recent Transactions & AI Search</h3>
-                  <form onSubmit={handleTransactionSearch} style={{ display: 'flex', gap: '8px', margin: '16px 0' }}>
+                  <form onSubmit={handleTransactionSearch} style={{ display: 'flex', gap: '8px', margin: '16px 0', flexWrap: 'wrap' }}>
                     <input
                       className="form-control"
                       value={transactionQuery}
                       onChange={e => setTransactionQuery(e.target.value)}
                       placeholder="Try: food above 500, June salary, utility bills"
-                      style={{ fontSize: '13px' }}
+                      style={{ fontSize: '13px', flex: 1, minWidth: 0 }}
                     />
                     <button className="btn btn-primary" type="submit" style={{ whiteSpace: 'nowrap' }}>Search</button>
                   </form>

@@ -109,7 +109,9 @@ a {
   flex-direction: column;
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
+  min-width: 0;
 }
 
 /* Global Page Transitions & Containers */
@@ -1046,11 +1048,24 @@ a {
   align-items: flex-end;
 }
 
+.cc-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
 .cc-label {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
   display: block;
+}
+
+.cc-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
 }
 
 .cc-limit-val {
@@ -4407,9 +4422,9 @@ a {
     font-size: 12px;
   }
 
-  /* KPI Grid */
+  /* KPI Grid - single column to prevent balance text overflow */
   .kpi-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 
@@ -4609,7 +4624,7 @@ a {
   /* Dropdown panels */
   .dropdown-panel {
     width: 280px;
-    right: -40px;
+    right: 0;
   }
 
   .rewards-panel,
