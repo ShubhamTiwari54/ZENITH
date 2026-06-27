@@ -4271,6 +4271,26 @@ a {
   display: inline-block;
 }
 
+/* Grids and responsive grid helper classes */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.widgets-container-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.grid-2col-responsive {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 /* ==========================================================================
    COMPREHENSIVE MOBILE RESPONSIVE OVERRIDES
    ========================================================================== */
@@ -4411,7 +4431,13 @@ a {
   }
 
   /* Middle Widgets */
-  .middle-widgets-grid {
+  .middle-widgets-grid,
+  .widgets-container-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .grid-2col-responsive {
     grid-template-columns: 1fr;
     gap: 16px;
   }

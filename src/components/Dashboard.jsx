@@ -314,7 +314,7 @@ export default function Dashboard({
         </div>
       )}
 
-      <div className="kpi-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+      <div className="kpi-grid">
         {/* Savings Balance Card */}
         <div className="kpi-card balance-card">
           <div className="card-top">
@@ -383,7 +383,7 @@ export default function Dashboard({
         </div>
       </div>
 
-      <div className="widgets-container-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginTop: '24px' }}>
+      <div className="widgets-container-grid">
         {sortedWidgets.map((widgetName) => {
           if (!visibleWidgets[widgetName]) return null;
 
@@ -763,7 +763,7 @@ export default function Dashboard({
                       />
                     </svg>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '16px' }}>
+                  <div className="grid-2col-responsive" style={{ marginTop: '16px' }}>
                     <div style={{ background: 'var(--body-bg)', padding: '12px', borderRadius: '8px', border: '1px solid var(--card-border)' }}>
                       <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Utilization</p>
                       <strong>{creditUtilization}% used</strong>
@@ -783,7 +783,7 @@ export default function Dashboard({
                     <button className="view-all-link" onClick={() => onPromoAction('investments')}>Open</button>
                   </div>
                   <p style={{ fontSize: '28px', fontWeight: 'bold', marginTop: '12px' }}>{formatCurrency(totalInvestments).split('.')[0]}</p>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginTop: '16px' }}>
+                  <div className="grid-2col-responsive" style={{ gap: '10px', marginTop: '16px' }}>
                     {Object.entries(investmentSummary).map(([key, value]) => (
                       <div key={key} style={{ background: 'var(--body-bg)', padding: '12px', borderRadius: '8px', border: '1px solid var(--card-border)' }}>
                         <p style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1')}</p>

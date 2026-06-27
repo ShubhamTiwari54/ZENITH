@@ -284,7 +284,7 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
           <div className="zenith-card mt-4" style={{ width: '100%', padding: '18px' }}>
             <h3 style={{ fontSize: '16px', fontWeight: 'bold' }}>Advanced Controls</h3>
             <p className="widget-subtitle">Travel, cross-border access, rewards, and emergency actions</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '14px' }}>
+            <div className="grid-2col-responsive" style={{ marginTop: '14px' }}>
               <button
                 type="button"
                 className={`btn ${creditCard?.travelModeEnabled ? 'btn-primary' : 'btn-outline'}`}
@@ -302,7 +302,7 @@ export default function Cards({ creditCard, onCardAction, addNotification }) {
                 International {creditCard?.internationalEnabled ? 'On' : 'Off'}
               </button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '12px' }}>
+            <div className="grid-2col-responsive" style={{ marginTop: '12px' }}>
               <div style={{ background: 'var(--body-bg)', padding: '12px', borderRadius: '8px', border: '1px solid var(--card-border)' }}>
                 <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Rewards earned</p>
                 <strong>{creditCard?.rewardsEarned || 1250} cashback pts</strong>

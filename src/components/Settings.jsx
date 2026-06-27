@@ -236,7 +236,7 @@ export default function Settings({ user, onSettingsChange, addNotification }) {
             <h3>Accessibility Profile</h3>
             <p className="widget-subtitle">Customize application rendering parameters</p>
 
-            <div className="accessibility-selectors mt-4" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="accessibility-selectors grid-2col-responsive mt-4">
               <div className="form-group">
                 <label>Preferred Language</label>
                 <select 
