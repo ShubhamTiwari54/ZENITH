@@ -1181,6 +1181,7 @@ a {
   align-items: center;
   font-size: 12px;
   gap: 6px;
+  min-width: 0;
 }
 
 .legend-dot {
@@ -1196,17 +1197,20 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
+  min-width: 0;
 }
 
 .legend-percent {
   color: var(--text-muted);
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .legend-amount {
   color: var(--text-primary);
   font-weight: 600;
   margin-left: 4px;
+  flex-shrink: 0;
 }
 
 /* Financial Health Score details */
